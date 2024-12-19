@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usage</title>
+<link rel="icon" type="image/x-icon" href="fluxion_video_generator_icon.ico">
+    <style>
+        /* Body styles to fill the viewport and ensure scrolling */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("background.png");
+            background-size: cover; /* Ensure the background covers the entire viewport */
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #212121;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Horizontally center */
+            align-items: flex-start; /* Align container to the top of the page */
+            min-height: 100vh; /* Ensure the body takes up the full height of the viewport */
+            overflow: auto; /* Allow the body to scroll */
+            position: relative; /* Allow buttons to be positioned absolutely */
+        }
+        
+        /* The container will have 60% of the width and take the full height */
+        .container {
+            width: 60%; /* 60% of the viewport width */
+            height: 100vh; /* Full height of the viewport */
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto; /* Enable scrolling inside the container if content overflows */
+            background-color: rgba(33, 33, 33, 0.7); /* Slightly transparent background for better text visibility */
+            border-radius: 10px; /* Optional: rounded corners */
+            display: flex;
+            flex-direction: column; /* Stack content vertically */
+            justify-content: flex-start; /* Align content to the top */
+        }
+        
+        /* Heading style */
+        h1 {
+            color: white;
+            font-weight: bold;
+            text-decoration: underline;
+            text-align: center; /* Horizontally center-align the heading */
+            margin-top: 0; /* Remove top margin */
+        }
+
+        /* Long text content */
+        .content {
+            margin: 20px 0;
+        }
+
+        /* Normal paragraph style with increased font size */
+        p {
+            margin: 20px 0;
+            font-size: 18px; /* Increased font size */
+        }
+
+        /* Bold and light red color for the last paragraph */
+        .bold-paragraph {
+            font-weight: bold;
+            color: #ff6f61; /* Light red color */
+        }
+
+        /* New Heading style for the subheadings */
+        .sub-heading {
+            color: white;
+            font-weight: bold;
+            text-decoration: underline;
+            text-align: center; /* Horizontally center-align the new heading */
+            margin-top: 30px; /* Add some space above */
+        }
+
+        /* Link styling */
+        a {
+            color: #1e90ff; /* Blue color */
+            text-decoration: none; /* Remove underline */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Add underline on hover */
+        }
+
+        /* Style for the image */
+        .center-image {
+            display: block;
+            margin: 20px auto; /* Center the image horizontally */
+            max-width: 100%; /* Ensure image doesn't overflow */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Styling for WARNING section */
+        .warning-heading {
+            color: #ff6f61; /* Light red color */
+            font-weight: bold;
+            text-decoration: underline;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .warning-content {
+            color: #ff6f61; /* Light red color */
+            margin: 20px 0;
+            font-size: 18px;
+        }
+
+        .important-text {
+            color: #ff0000; /* Bright red for emphasis */
+            font-weight: bold;
+        }
+
+        /* Button styling */
+        .top-button {
+            position: absolute;
+            top: 20px;
+            padding: 15px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            opacity: 0;
+            transition: background-color 0.3s;
+        }
+
+        .top-button:hover {
+            background-color: #0056b3;
+        }
+
+        .top-left {
+            left: 20px;
+            transform: translateX(-100px);
+            animation: slideInLeft 0.5s ease-in-out forwards;
+        }
+
+        .top-right {
+            right: 20px;
+            transform: translateX(100px);
+            animation: slideInRight 0.5s ease-in-out forwards;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index"><button class="top-button top-left">Visit Mainpage</button></a>
+    <a href="video"><button class="top-button top-right">Watch Video</button></a>
+    <div class="container">
+        <h1>How to use?</h1>
+        <p>The AI system operates by leveraging three advanced models to generate the final video. The first model, <a href="https://build.nvidia.com/nvidia/nemotron-4-340b-instruct" target="_blank">Nemotron 4 340B by Nvidia</a>, is a large language model (LLM) based on the T5 architecture. This model is responsible for generating the script and the image generation prompts. Nemotron runs on Nvidia's server infrastructure, from where it processes the input and produces the necessary outputs for the subsequent steps.</p>
+
+        <p>The second model, <a href="https://blackforestlabs.ai/" target="_blank">Flux 1.0 Dev by Black Forest Labs</a>, is an image generation model hosted on Hugging Face's cloud platform. Flux 1.0 Dev takes the prompts generated by Nemotron and produces the corresponding images for the video.</p>
+
+        <p>The third model, <a href="https://elevenlabs.io/" target="_blank">Eleven Labs Multilingual V2</a>, is used for text-to-speech conversion, transforming the script generated by Nemotron into voice narration. This model operates on Eleven Labs' server infrastructure.</p>
+
+        <p class="bold-paragraph"><a href="#warning_content" style="color: red">CLICK HERE AND READ THE WARNING BEFORE MOVING FORWARD.</a> To access and utilize these models, individual API keys must be obtained for each service. Additionally, a valid email address is required to receive the generated video, as the model's delivery mechanism is based on email. Please note that any charges associated with API usage are the sole responsibility of the user and are not covered by our service.</p>
+
+        <!-- Subheading for Nemotron API Key -->
+        <h2 class="sub-heading">How to obtain Nemotron API Key?</h2>
+        <p>To begin, visit the <a href="https://build.nvidia.com/nvidia/nemotron-4-340b-instruct" target="_blank">official website of Nvidia's Nemotron 4</a>. Next, register for an account if you haven't already. Once registered, generate an API key and ensure that it is functional and valid. Additionally, verify that your account has available credits, though a free trial will suffice for this purpose. Below is an image representation illustrating the steps for generating the API key:</p>
+        <img src="nemotron_api_key_image.png" alt="Nemotron API Key Steps" class="center-image">
+
+        <!-- Subheading for Eleven Labs API Key -->
+        <h2 class="sub-heading">How to obtain Elevenlabs API Key?</h2>
+        <p>To obtain your <a href="https://elevenlabs.io/" target="_blank">Eleven Labs API key</a>, start by visiting their official website and signing up for an account. Upon registration, you will receive 10,000 credits as part of a free trial. Proceed to generate your API key and copy it for future use. Ensure that the key is not restricted and has full access to the required services. Additionally, regularly check that your credits are not exhausted after several uses. Below is an image representation showing how to generate your Eleven Labs API key:</p>
+        <img src="eleven_labs_api_key_steps.png" alt="Eleven Labs API Key Steps" class="center-image">
+
+        <!-- Subheading for Hugging Face API Key -->
+        <h2 class="sub-heading">How to obtain Huggingface API Key?</h2>
+        <p>Begin by visiting <a href="https://huggingface.co/" target="_blank">Hugging Face's official website</a> and signing up for an account. Once registered, complete the email verification process following their outlined procedures. After your email is verified, navigate to your account settings and select "Access Tokens" from the menu. Generate a new access token (API key) and configure its permissions. Grant the token all permissions except for billing-related ones. Ensure the access token has the necessary permissions to interact with and send requests to AI models. Below is an image representation outlining the steps to generate a Hugging Face API key:</p>
+        <img src="huggingface_api_key_steps.png" alt="Hugging Face API Key Steps" class="center-image">
+<!-- WARNING Section -->
+<h2 class="sub-heading warning-heading">WARNING!</h2>
+<p class="warning-content"  id="warning_content">
+    Please note once again that any charges incurred from API key usage are entirely the responsibility of the user and not ours. While the free trial provided by each service will work initially, once those credits are exhausted, you will need to ensure that your account has sufficient credits for continued use. If you attempt to use our AI system with an API key linked to an account that lacks credits, the process will fail, and instead of receiving the generated video, you will receive an error notification via email.
+</p>
+<p class="warning-content">
+    It is crucial to ensure your API keys remain valid and sufficiently funded to avoid any interruptions. <span class="important-text">Remember, we are not liable for any costs associated with API key usage, including fees incurred from exceeding the free trial limits or maintaining access beyond the trial period.</span>
+</p>
+    </div>
+</body>
+</html>

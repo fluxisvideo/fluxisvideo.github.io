@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Tutorial</title>
+<link rel="icon" type="image/x-icon" href="fluxion_video_generator_icon.ico">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("background.png");
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #212121;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        .top-button {
+            position: absolute;
+            top: 20px;
+            padding: 15px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            opacity: 0;
+            transition: background-color 0.3s;
+        }
+
+        .top-button:hover {
+            background-color: #0056b3;
+        }
+
+        .top-left {
+            left: 20px;
+            transform: translateX(-100px);
+            animation: slideInLeft 0.5s ease-in-out forwards;
+        }
+
+        .top-right {
+            right: 20px;
+            transform: translateX(100px);
+            animation: slideInRight 0.5s ease-in-out forwards;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index"><button class="top-button top-left">Visit Mainpage</button></a>
+    <a href="usage"><button class="top-button top-right">Read Usage</button></a>
+    <!-- Content of the page goes here -->
+    <h3 style="color: white; text-align: center; width: 60%;">
+We apologize for the inconvenience, but the tutorial video is currently unavailable. Rest assured, it will be made available in the future. Thank you for your patience and understanding.</h3>
+</body>
+</html>

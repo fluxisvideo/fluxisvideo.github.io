@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluxis Video Generator</title>
+<link rel="icon" type="image/x-icon" href="fluxion_video_generator_icon.ico">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("background.png");
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #212121;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            opacity: 0;
+            animation: fadeInBackground 0.5s ease-in-out forwards;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .separator_top {
+            height: 4px;
+            background-color: grey;
+            margin-bottom: 0px;
+            border-radius: 2px;
+        }
+
+        .separator_bottom {
+            height: 4px;
+            background-color: grey;
+            margin-bottom: 10px;
+            border-radius: 2px;
+        }
+
+        form {
+            background-color: #171717;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transform: translateY(100px);
+            opacity: 0;
+            animation: slideUpFadeIn 0.5s ease-in-out forwards;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #212121;
+            color: white;
+        }
+
+        input:focus {
+            border-color: #007BFF;
+            outline: none;
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        button {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 10px 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: not-allowed;
+            transition: background-color 0.3s;
+        }
+
+        button.active {
+            background-color: #007BFF;
+            cursor: pointer;
+        }
+
+        button.active:hover {
+            background-color: #0056b3;
+        }
+
+        #responseMessage {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 0px;
+        }
+
+        /* Modal styles */
+        .modal {
+            visibility: hidden;
+            opacity: 0;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: visibility 0s, opacity 0.3s ease;
+        }
+
+        .modal.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 30%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .modal-button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .modal-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+            flex-grow: 1;
+        }
+
+        .modal-button:hover {
+            background-color: #0056b3;
+        }
+
+        .exit-button {
+            background-color: #FF0000;
+        }
+
+        .exit-button:hover {
+            background-color: #D50000;
+        }
+
+        .modal-text {
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 10px;
+        }
+
+        /* Top button styles */
+        .top-button {
+            position: absolute;
+            top: 20px;
+            padding: 15px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            opacity: 0;
+            transition: background-color 0.3s;
+        }
+
+        .top-button:hover {
+            background-color: #0056b3;
+        }
+
+        .top-left {
+            left: 20px;
+            transform: translateX(-100px);
+            animation: slideInLeft 0.5s ease-in-out forwards;
+        }
+
+        .top-right {
+            right: 20px;
+            transform: translateX(100px);
+            animation: slideInRight 0.5s ease-in-out forwards;
+        }
+
+        /* Animations */
+        @keyframes fadeInBackground {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUpFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Buttons -->
+    <a href="usage"><button class="top-button top-left">Read Usage</button></a>
+    <a href="video"><button class="top-button top-right">Watch Video</button></a>
+
+    <form id="generateForm">
+        <h1>Fluxis Video Generator</h1>
+        <div class="separator_top"></div>
+        <input type="text" id="video_title" name="video_title" placeholder="Video Title" required>
+        <input type="text" id="nemotron_api" name="nemotron_api" placeholder="Nemotron API Key" required>
+        <input type="text" id="eleven_api" name="eleven_api" placeholder="Eleven Labs API Key" required>
+        <input type="text" id="huggingface_api" name="huggingface_api" placeholder="Huggingface API Key" required>
+        <input type="email" id="email" name="email" placeholder="Email Address" required>
+        <div class="separator_bottom"></div>
+        <button type="button" id="generateBtn" disabled>Generate</button>
+        <p id="responseMessage"></p>
+    </form>
+
+    <!-- Modal for Confirmation -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <p class="modal-text">Make sure that the Gmail entered is correct and accessible (to you). Any charges on the API usage will not be our responsibility. Please read the usage.</p>
+            <div class="modal-button-container">
+                <button id="exitBtn" class="modal-button exit-button">Exit</button>
+                <button id="proceedBtn" class="modal-button">I Agree</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Ensures animations are triggered on page load
+        document.addEventListener("DOMContentLoaded", () => {
+            document.body.style.animationPlayState = "running";
+        });
+    </script>
+<script src="script.js"></script> <!-- External JS -->
+</body>
+</html>
