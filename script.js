@@ -46,7 +46,7 @@ document.getElementById('proceedBtn').addEventListener('click', async function (
     };
 
     try {
-        const response = await fetch('https://redesigned-cod-pjwjqxrg6px73r4vx-5000.app.github.dev/generate', {
+        const response = await fetch('https://refactored-broccoli-pjwjqxrg696rc7999-5000.app.github.dev/generate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
