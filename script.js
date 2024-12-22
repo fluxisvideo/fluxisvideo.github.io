@@ -46,7 +46,7 @@ document.getElementById('proceedBtn').addEventListener('click', async function (
     };
 
     try {
-        const response = await fetch('https://automatic-acorn-q74vq7pg6xq6hpj6-5000.app.github.dev/generate', {
+        const response = await fetch('https://stunning-rotary-phone-jj7r5jqw947wfp7g4-5000.app.github.dev/generate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
